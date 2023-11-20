@@ -1,7 +1,8 @@
 class LMS:
     
     def options(self):
-        print('LIBRARY \n 1. AVALIABLE BOOKS \n 3. ADD A BOOK \n 3. BUY BOOK \n 4. EXIT ')
+        print('**********LIBRARY MANAGEMENT SYSTEM**********')
+        print('LIBRARY \n 1. AVALIABLE BOOKS \n 2. ADD A BOOK \n 3. BUY BOOK \n 4. EXIT ')
         try :
             view = int(input('Enter your option from 1 to 4:'))
         
@@ -15,13 +16,24 @@ class LMS:
                 return self.buyabook()
         
             elif view == 4:
-                return 0
+                sure=str(input('Are you sure you want to exit? y or n.'))
+                if sure == 'y':
+                    print('Bye!')
+
+                elif sure == 'n':
+                    print(book.options())
+
+                else:
+                    print(f'Enter a valid value. {book.options()}')
         
             else:
                 print('Please enter a valid number!')
+                print(book.options())
+                
 
         except ValueError as e:
-            print(f'Invalid input! {e}')   
+            print(f'Invalid input! {e}')
+            print(book.options())
             
     def readfile(self):
         with open ('data.txt', 'r') as f:
@@ -37,10 +49,23 @@ class LMS:
             stock=int(input('Enter the stock of the book:'))
             price=int(input('Enter the price of the book:'))
             with open ('data.txt','a') as f:
-                f.write(f'{title},{author},{stock},{price}')
+                f.write(f'\n{title},{author},{stock},${price}')
                 f.close
+            print('The book has been added to the library.') 
+            con=str(input('Do you wish to continue? type \'y\' for yes and \'n\' for no.')).capitalize()
+            if con == 'Y':
+                print(book.options())
+                
+            elif con == 'N':
+                print('Thank you for your time.')
+
+            else: 
+                print('Invalid input, try again.')
+                print(book.options())
+
         except Exception as e:
             print(f'Invalid input. {e}')
+            print(book.options())
 
     def buyabook(self):
         print("Enter the details of the book you want to buy")
