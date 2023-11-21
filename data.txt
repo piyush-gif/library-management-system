@@ -1,14 +1,3 @@
-Harry Potter,JK Rowling,16,$2
-Start With Why,Simon Sinek,9,$1.5
-Programming With Python,John Smith,20,$1.5
-Asd,asd,2,$2
-Asd,asd,2,$2
-Ds,ads,2,$2
-Asd,ASD,2,$2
-Ads,ASD,2,$2
-Asd,asd,2,$2
-Sad,as,2,$2
-Asd,asd,2,$2
-Asd,ds,2,$2
-Asd,asd,2,$2
-Asd,asd,2,$2
+Harry Potter,JK Rowling,12,$2
+Start With Why,Simon Sinek,1,$1.5
+Programming With Python,John Smith,0,$1.5
