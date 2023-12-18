@@ -41,7 +41,7 @@ class LMS:
             stock = int(input('Enter the stock of the book:'))
             price = int(input('Enter the price of the book:'))
             with open ('data.txt','a') as f:
-                f.write(f'\n{title},{author},{stock},${price}')
+                f.write(f'{title},{author},{stock},${price}\n')
                 f.close()
             print('The book has been added to the library.') 
             self.continue_program()
@@ -54,34 +54,44 @@ class LMS:
         print("Enter the details of the book you want to buy.")
         
         try :
-    
             btitle = str(input('Enter the title of the book:')).title()
-            book_found = False
             with open ('data.txt', 'r') as f:
                 lines = f.readlines()
-            updated_lines = []
 
+            with open('data.txt', 'w') as file:
+                file.write('')
+                
+                #print(lines)
             for line in lines:
                 bdetails = line.strip().split(',')
+                #print(bdetails)
 
-                if btitle == bdetails[0]:
-                    book_found = False
+                if btitle == bdetails[0]: #   [Harry Potter,Jk Rowling,30,$2]
+                    #print(bdetails) 
+                    storage=bdetails
+                    # print(storage)[Harry Potter,Jk Rowling,30,$2]
                     bamount = int(input('Enter the amount of books you want to buy limited to 3 person:'))
-                    current_stock=int(bdetails[2])
-                    if 0 < bamount <=3 and current_stock >= bamount:
-                        bdetails[2] = str(current_stock - bamount)
-                        updated_lines.append(','.join(bdetails) + '\n')
-                    else :
-                        print('Invalid input! Either the amount is invalid or out of stock.')
-                else:
-                        updated_lines.append(lines)
-            with open ('data.txt', 'w') as f:
-                f.writelines(updated_lines)
-                            
-            if not book_found:
-                    print('There is no such book in the database.')
+                    #current_stock=
+                    #print(storage[2]) 30
+                    if 0 < bamount <= 3 and int(storage[2]) >= bamount:
+                        #print(i) --> 0
+                        #pass
+                        #current_stock = 30
+                        storage[2]=int(storage[2]) - bamount
+                        storage=[str(data) for data in storage]
 
-            self.continue_program()
+                        # print(storage)
+                        with open ('data.txt','a') as file:
+                           file.writelines((','.join(storage))+'\n' )      
+                    else :
+                       print('Invalid input! Either the amount is invalid or out of stock.')
+                             
+                else:
+                  # bdetails=[str(data) for data in bdetails]
+                    with open('data.txt','a') as f:
+                        f.write((line))
+
+            print('The file has been updated')
                 
         except Exception as e:
             print(f'Enter a Valid Input!{e}')
